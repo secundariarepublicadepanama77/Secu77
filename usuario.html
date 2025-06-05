@@ -119,7 +119,7 @@
     function eliminarUsuario(matricula) {
       if (confirm(`¿Estás seguro de eliminar al usuario con matrícula ${matricula}?`)) {
         console.log("🧪 Intentando eliminar: ", matricula); // 👈 AGREGA ESTA LÍNEA
-        fetch("/api/matriculas/" + matricula, {
+        fetch("https://backend-secundaria77.onrender.com/api/matriculas/" + matricula, {
           method: "DELETE"
         })
         .then(res => res.json())
