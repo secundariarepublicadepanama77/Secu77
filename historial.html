@@ -59,12 +59,12 @@
 
   <script>
         if (localStorage.getItem("sesionIniciada") !== "true") {
-      window.location.href = "login2.html";
+      window.location.href = "login.html";
     }
 
     document.getElementById("logout").addEventListener("click", () => {
       localStorage.removeItem("sesionIniciada");
-      window.location.href = "login2.html";
+      window.location.href = "login.html";
     });
     let todos = [];
 
