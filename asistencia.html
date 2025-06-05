@@ -42,6 +42,10 @@
     }
     setInterval(actualizarReloj, 1000);
     actualizarReloj();
+// ⚠️ Precalienta el backend
+fetch("https://backend-secundaria77.onrender.com/")
+  .then(() => console.log("🔥 Backend despierto"))
+  .catch(err => console.warn("⚠️ Backend aún dormido", err));
 
     // 📤 Registrar asistencia
     document.getElementById("form-asistencia").addEventListener("submit", async (e) => {
