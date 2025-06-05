@@ -146,7 +146,7 @@
         ciclo_escolar: document.getElementById("edit-ciclo").value,
         tipo: document.getElementById("edit-tipo").value,
       };
-      const res = await fetch("/api/matriculas", {
+     const res = await fetch("https://backend-secundaria77.onrender.com/api/matriculas", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
