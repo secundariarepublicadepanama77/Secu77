@@ -76,7 +76,7 @@
         tipo: document.getElementById("tipo").value
       };
 
-      const respuesta = await fetch("/api/usuarios", {
+      const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/usuarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
