@@ -90,7 +90,7 @@
 }
 
     async function cargarRegistros() {
-      const res = await fetch("http://localhost:3000/registros");
+     const res = await fetch("https://backend-secundaria77.onrender.com/registros");
       const data = await res.json();
       const tbody = document.getElementById("tabla_registros");
       tbody.innerHTML = "";
@@ -153,7 +153,7 @@
         return;
       }
 
-      const res = await fetch("/actualizar-horarios", {
+      const res = await fetch("https://backend-secundaria77.onrender.com/actualizar-horarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, entrada, salida })
@@ -178,7 +178,7 @@
   if (!confirmar) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/eliminar-registro/${id}`, { method: "DELETE" });
+    const res = await fetch(`https://backend-secundaria77.onrender.com/eliminar-registro/${id}`, { method: "DELETE" });
     const result = await res.json();
 
     alert(result.mensaje || "Registro eliminado");
