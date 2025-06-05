@@ -58,7 +58,7 @@
 
         const data = await res.json();
 
-       const url = new URL("/Secu77/public/confirmacion.html", window.location.origin);
+       const url = new URL("confirmacion.html", window.location.origin);
         url.searchParams.set("nombre", data.nombre || "");
         url.searchParams.set("tipo", data.tipo || "");
         url.searchParams.set("foto", data.foto || "");
