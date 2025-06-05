@@ -76,7 +76,7 @@
 
   <script>
     async function cargarUsuarios() {
-      const res = await fetch("/api/matriculas");
+      const res = await fetch("https://backend-secundaria77.onrender.com/api/matriculas");
       const data = await res.json();
       const tbody = document.getElementById("tabla_usuarios");
       tbody.innerHTML = "";
