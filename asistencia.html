@@ -46,6 +46,8 @@
 fetch("https://backend-secundaria77.onrender.com/")
   .then(() => console.log("🔥 Backend despierto"))
   .catch(err => console.warn("⚠️ Backend aún dormido", err));
+    alert("⚠️ El servidor está tardando en responder. Intenta de nuevo en unos segundos.");
+
 
     // 📤 Registrar asistencia
     document.getElementById("form-asistencia").addEventListener("submit", async (e) => {
