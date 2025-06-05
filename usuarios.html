@@ -73,7 +73,7 @@
 
   <script>
     async function cargarUsuarios() {
-      const respuesta = await fetch("/api/usuarios");
+     const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/usuarios");
       const datos = await respuesta.json();
       const cuerpo = document.querySelector("#tabla-usuarios tbody");
       cuerpo.innerHTML = "";
@@ -96,7 +96,7 @@
 
     async function eliminarUsuario(id) {
       if (confirm("¿Estás seguro de eliminar este usuario?")) {
-        const respuesta = await fetch(`/api/usuarios/${id}`, {
+       const respuesta = await fetch(`https://backend-secundaria77.onrender.com/api/usuarios/${id}`, {
           method: "DELETE"
         });
         const resultado = await respuesta.json();
@@ -141,8 +141,7 @@ document.getElementById("form-editar-usuario").addEventListener("submit", async 
     usuario: document.getElementById("edit-usuario").value,
     tipo: document.getElementById("edit-tipo").value
   };
-
-  const respuesta = await fetch(`/api/usuarios/${id}`, {
+  const respuesta = await fetch(`https://backend-secundaria77.onrender.com/api/usuarios/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(datos)
