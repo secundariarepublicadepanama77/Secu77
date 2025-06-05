@@ -69,7 +69,7 @@
     let todos = [];
 
     async function cargarHistorial() {
-      const res = await fetch("/registros");
+     const res = await fetch("https://backend-secundaria77.onrender.com/registros");
       todos = await res.json();
       renderizar(todos);
       llenarFiltros(todos);
