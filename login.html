@@ -49,7 +49,7 @@
         const mensaje = document.getElementById("mensaje");
 
 if (respuesta.ok) {
-if (resultado.tipo === "admin" || resultado.tipo === "administración") {
+if (resultado.tipo.toLowerCase() === "administración") {
   window.location.href = "menu-admin.html";
 }
   } else if (resultado.tipo === "docente") {
