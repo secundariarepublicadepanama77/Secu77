@@ -45,6 +45,7 @@
 
         const resultado = await respuesta.json();
         console.log("Resultado del login:", resultado);
+        alert("Tipo recibido: " + resultado.tipo);
         const mensaje = document.getElementById("mensaje");
 
         if (respuesta.ok) {
