@@ -29,6 +29,12 @@
   </style>
 </head>
 <body>
+    <script>
+    // 🔐 Bloquear acceso si no ha iniciado sesión
+    if (localStorage.getItem("sesionIniciada") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
   <h1>Usuarios Registrados</h1>
 
   <div class="top-bar">
