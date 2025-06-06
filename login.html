@@ -4,63 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Iniciar sesión</title>
-  <link rel="stylesheet" href="login.css">
+  <style>
+    body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .form { border: 1px solid #ccc; padding: 2rem; border-radius: 8px; }
+    input { display: block; margin: 10px 0; padding: 0.5rem; width: 100%; }
+    button { padding: 0.5rem 1rem; }
+    #mensaje { color: red; margin-top: 1rem; }
+  </style>
 </head>
 <body>
-  <div class="fondo-login">
-    <div class="formulario-contenedor">
-      <img src="img/logo.png" alt="Logo escuela" class="logo-login">
-      <h2>Inicia sesión</h2>
-
-      <form id="form-login">
-        <input type="text" id="usuario" placeholder="Usuario" required>
-        <input type="password" id="contrasena" placeholder="Contraseña" required>
-        <div class="botones">
-          <a href="index.html" class="btn-volver">Volver</a>
-          <button type="submit" class="btn-ingresar">Ingresar</button>
-        </div>
-      </form>      
-
-      <div id="mensaje" style="margin-top: 1rem; color: red;"></div>
-    </div>
+  <div class="form">
+    <h2>Login</h2>
+    <form id="form-login">
+      <input type="text" id="usuario" placeholder="Usuario" required />
+      <input type="password" id="contrasena" placeholder="Contraseña" required />
+      <button type="submit">Ingresar</button>
+    </form>
+    <div id="mensaje"></div>
   </div>
 
   <script>
-    document.getElementById("form-login").addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const datos = {
-        usuario: document.getElementById("usuario").value.trim(),
-        contrasena: document.getElementById("contrasena").value
-      };
+    document.getElementById("form-login").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const contrasena = document.getElementById("contrasena").value;
+      const mensaje = document.getElementById("mensaje");
 
       try {
-        const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/login", {
+        const res = await fetch("https://backend-secundaria77.onrender.com/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(datos)
+          body: JSON.stringify({ usuario, contrasena }),
         });
 
-        const resultado = await respuesta.json();
-        const mensaje = document.getElementById("mensaje");
-        console.log("Login resultado:", resultado);
+        const data = await res.json();
+        console.log("RESPUESTA DEL BACKEND:", data);
 
-        if (respuesta.ok && resultado.tipo) {
-  if (resultado.tipo === "admin") {
-    window.location.href = "menu-admin.html";
-  } else if (resultado.tipo === "docente") {
-    window.location.href = "menu-docente.html";
-  } else if (resultado.tipo === "alumno") {
-    window.location.href = "menu-alumno.html";
-  } else {
-    mensaje.innerText = "❌ Tipo de usuario no reconocido";
-  }
-} else {
-  mensaje.innerText = "❌ Usuario o contraseña incorrectos";
-}
-
+        if (res.ok && data.tipo) {
+          mensaje.innerText = "✅ Redireccionando como: " + data.tipo;
+          setTimeout(() => {
+            if (data.tipo === "admin") window.location.href = "menu-admin.html";
+            else if (data.tipo === "docente") window.location.href = "menu-docente.html";
+            else if (data.tipo === "alumno") window.location.href = "menu-alumno.html";
+            else mensaje.innerText = "❌ Tipo desconocido: " + data.tipo;
+          }, 1000);
+        } else {
+          mensaje.innerText = "❌ Credenciales inválidas";
+        }
       } catch (error) {
-        document.getElementById("mensaje").innerText = "❌ Error al conectar con el servidor";
+        console.error(error);
+        mensaje.innerText = "❌ Error al conectar con el servidor";
       }
     });
   </script>
