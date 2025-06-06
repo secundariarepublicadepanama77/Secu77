@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Iniciar sesión</title>
   <link rel="stylesheet" href="login.css">
 </head>
@@ -26,7 +26,7 @@
   </div>
 
   <script>
-    document.getElementById("form-login").addEventListener("submit", async function(event) {
+    document.getElementById("form-login").addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const datos = {
@@ -35,35 +35,34 @@
       };
 
       try {
-       const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/login", {
+        const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/login", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(datos)
         });
 
         const resultado = await respuesta.json();
-        console.log("Resultado del login:", resultado);
-        alert("Tipo recibido: " + resultado.tipo);
         const mensaje = document.getElementById("mensaje");
+        console.log("Login resultado:", resultado);
 
-if (respuesta.ok) {
-if (resultado.tipo.toLowerCase() === "administración") {
-  window.location.href = "menu-admin.html";
-}
+        if (respuesta.ok && resultado.tipo) {
+  if (resultado.tipo === "admin") {
+    window.location.href = "menu-admin.html";
   } else if (resultado.tipo === "docente") {
     window.location.href = "menu-docente.html";
   } else if (resultado.tipo === "alumno") {
     window.location.href = "menu-alumno.html";
   } else {
-    alert("❌ Tipo de usuario no reconocido: " + resultado.tipo);
+    mensaje.innerText = "❌ Tipo de usuario no reconocido";
   }
+} else {
+  mensaje.innerText = "❌ Usuario o contraseña incorrectos";
 }
+
       } catch (error) {
         document.getElementById("mensaje").innerText = "❌ Error al conectar con el servidor";
       }
     });
-  </script>  
+  </script>
 </body>
 </html>
