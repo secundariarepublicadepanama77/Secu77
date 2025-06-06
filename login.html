@@ -24,27 +24,28 @@
       <div id="mensaje" style="margin-top: 1rem; color: red;"></div>
     </div>
   </div>
+
   <script>
     document.getElementById("form-login").addEventListener("submit", async function (event) {
       event.preventDefault();
-  
+
       const datos = {
         usuario: document.getElementById("usuario").value.trim(),
         contrasena: document.getElementById("contrasena").value
       };
-  
+
       try {
         const respuesta = await fetch("https://backend-secundaria77.onrender.com/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(datos)
         });
-  
+
         const resultado = await respuesta.json();
         const mensaje = document.getElementById("mensaje");
-  
+
         console.log("Login resultado:", resultado);
-  
+
         if (respuesta.ok) {
           if (resultado.tipo === "admin") {
             window.location.href = "https://secundariarepublicadepanama77.github.io/Secu77/menu-admin.html";
@@ -65,4 +66,3 @@
   </script>  
 </body>
 </html>
-
