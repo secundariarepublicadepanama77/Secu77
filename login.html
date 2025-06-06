@@ -48,18 +48,17 @@
         alert("Tipo recibido: " + resultado.tipo);
         const mensaje = document.getElementById("mensaje");
 
-        if (respuesta.ok) {
-          // Redirecciona según el tipo de usuario
-          if (resultado.tipo === "admin") {
-            window.location.href = "menu-admin.html";
-          } else if (resultado.tipo === "docente") {
-            window.location.href = "menu-docente.html";
-          } else if (resultado.tipo === "alumno") {
-            window.location.href = "menu-alumno.html";
-          }
-        } else {
-          mensaje.innerText = "❌ " + resultado.error;
-        }
+if (respuesta.ok) {
+  if (resultado.tipo === "admin") {
+    window.location.href = "menu-admin.html";
+  } else if (resultado.tipo === "docente") {
+    window.location.href = "menu-docente.html";
+  } else if (resultado.tipo === "alumno") {
+    window.location.href = "menu-alumno.html";
+  } else {
+    alert("❌ Tipo de usuario no reconocido: " + resultado.tipo);
+  }
+}
       } catch (error) {
         document.getElementById("mensaje").innerText = "❌ Error al conectar con el servidor";
       }
