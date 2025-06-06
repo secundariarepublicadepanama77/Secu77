@@ -44,6 +44,7 @@
         });
 
         const resultado = await respuesta.json();
+        console.log("Resultado del login:", resultado);
         const mensaje = document.getElementById("mensaje");
 
         if (respuesta.ok) {
