@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="registro_usuario.css">
 </head>
 <body>
+    <script>
+    // 🔐 Bloquear acceso si no ha iniciado sesión
+    if (localStorage.getItem("sesionIniciada") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
   <div class="contenedor">
     <h1>Registrar Usuario</h1>
     <form id="form-registro">
