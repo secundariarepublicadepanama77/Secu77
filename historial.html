@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="admon.css">
 </head>
 <body>
+    <script>
+    // 🔐 Bloquear acceso si no ha iniciado sesión
+    if (localStorage.getItem("sesionIniciada") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
   <header class="barra-superior">
     <h1>📊 Panel de Control</h1>
     <nav class="menu">
