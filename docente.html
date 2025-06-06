@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="estilo-global.css" />
 </head>
 <body>
-
+  <script>
+    // 🔐 Bloquear acceso si no ha iniciado sesión
+    if (localStorage.getItem("sesionIniciada") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
   <!-- Encabezado con logo y título -->
   <header>
     <div class="franja bandera"></div>
